@@ -4,10 +4,6 @@ from tkinter.filedialog import askopenfilename ,asksaveasfile
 import os
 
 
-# font and fontsize
-font="Arial"
-font_size=13
-
 # functions
 def newFile():
     global file
@@ -51,12 +47,6 @@ def paste():
 def select_all():
     textarea.tag_add(SEL, "1.0", END)
 
-def change_font(temp_font):
-    global font
-    font=temp_font
-def change_font_size(temp_font_size):
-    global font_size
-    font_size=temp_font_size
 
 
 def about():
@@ -69,10 +59,17 @@ if __name__=="__main__":
     root.geometry("900x600")
     root.minsize(900,200)
 
+    # font and fontsize
+    font=StringVar()
+    font_size=IntVar()
+    font.set("Ariel")
+    font_size.set(13)
+
+
     # text area
     f1=Frame(root)
     f1.pack(side=LEFT,fill=BOTH,expand=True)
-    textarea=Text(f1,font=f"{font} {font_size}")
+    textarea=Text(f1,font=f"{font.get()} {font_size.get()}")
     textarea.pack(expand=True,fill=BOTH)
 
 
@@ -95,30 +92,12 @@ if __name__=="__main__":
     mainmenu.add_cascade(label="File",menu=Filemenu)
     # edit menu 
     Editmenu=Menu(mainmenu,tearoff=0)
-    Editmenu.add_command(label="Cut",command=cut)
-    Editmenu.add_command(label="Copy",command=copy)
-    Editmenu.add_command(label="Paste",command=paste)
+    Editmenu.add_command(label="Cut",command=cut,accelerator='Ctrl+X')
+    Editmenu.add_command(label="Copy",command=copy,accelerator='Ctrl+C')
+    Editmenu.add_command(label="Paste",command=paste,accelerator='Ctrl+V')
     Editmenu.add_command(label="Select All",command=select_all)
-    # sub_font_menu 
-    # sub_font_menu=Menu(Editmenu,tearoff=0)
-    # # fonts 
-    # sub_font_menu.add_command(label="Arial",command=change_font("Arial"))
-    # sub_font_menu.add_command(label="Terminal",command=change_font("Terminal"))
-    # sub_font_menu.add_command(label="Arial",command=change_font("Arial"))
-    # sub_font_menu.add_command(label="Arial",command=change_font("Arial"))
-    # sub_font_menu.add_command(label="Arial",command=change_font("Arial"))
-    # sub_font_menu.add_command(label="Arial",command=change_font("Arial"))
-    # # font list over
-    # Editmenu.add_cascade(label="Fonts",menu=sub_font_menu)
-    # # sub_font_size_menu 
-    # sub_font_size_menu=Menu(Editmenu,tearoff=0)
-    # # font size
-    # Editmenu.add_cascade(label="Font Size",menu=sub_font_size_menu)
-    # sub_font_size_menu.add_command(label="Arial",command=change_font_size(25))
-    # sub_font_size_menu.add_command(label="Terminal",command=change_font_size(55))
-    # # font size list over
-
-
+     # sub_font_menu 
+    sub_font_menu=Menu(Editmenu,tearoff=0)
 
     mainmenu.add_cascade(label="Edit",menu=Editmenu)
 
@@ -137,3 +116,5 @@ if __name__=="__main__":
     textarea.config(yscrollcommand=Scroll.set)
 
     root.mainloop()
+
+
