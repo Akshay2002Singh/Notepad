@@ -46,6 +46,28 @@ def paste():
     textarea.event_generate("<Control-v>")
 def select_all():
     textarea.tag_add(SEL, "1.0", END)
+def Theme_dark():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="White")
+def Theme_light():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Black")
+def light_red():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Red")
+def light_green():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Green")
+def light_magenta():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Magenta")
+
+def dark_cyan():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Cyan")
+def dark_yellow():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Yellow")
+def dark_red():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Red")
+def dark_green():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Green")
+def dark_magenta():
+    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Magenta")
+
 
 
 
@@ -96,10 +118,22 @@ if __name__=="__main__":
     Editmenu.add_command(label="Copy",command=copy,accelerator='Ctrl+C')
     Editmenu.add_command(label="Paste",command=paste,accelerator='Ctrl+V')
     Editmenu.add_command(label="Select All",command=select_all)
-     # sub_font_menu 
-    sub_font_menu=Menu(Editmenu,tearoff=0)
-
     mainmenu.add_cascade(label="Edit",menu=Editmenu)
+    # Theme
+    Theme_menu=Menu(mainmenu,tearoff=0)
+    Theme_menu.add_command(label="Light",command=Theme_light)
+    Theme_menu.add_command(label="Light Red",command=light_red)
+    Theme_menu.add_command(label="Light Green",command=light_green)
+    Theme_menu.add_command(label="Light Magenta",command=light_magenta)
+    Theme_menu.add_command(label="Dark",command=Theme_dark)
+    Theme_menu.add_command(label="Dark Cyan",command=dark_cyan)
+    Theme_menu.add_command(label="Dark Magenta",command=dark_magenta)
+    Theme_menu.add_command(label="Dark Yellow",command=dark_yellow)
+    Theme_menu.add_command(label="Dark Red",command=dark_red)
+    Theme_menu.add_command(label="Dark Green",command=dark_green)
+
+    mainmenu.add_cascade(label="Theme",menu=Theme_menu)
+    
 
 
     # help menu 
