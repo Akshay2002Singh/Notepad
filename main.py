@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import font
 from tkinter.messagebox import showerror, showinfo
 from tkinter.filedialog import askopenfilename ,asksaveasfile
 import os
@@ -47,28 +48,37 @@ def paste():
 def select_all():
     textarea.tag_add(SEL, "1.0", END)
 def Theme_dark():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="White")
+    textarea.config(background="Black",fg="White")
 def Theme_light():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Black")
+    textarea.config(background="White",fg="Black")
 def light_red():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Red")
+    textarea.config(background="White",fg="Red")
 def light_green():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Green")
+    textarea.config(background="White",fg="Green")
 def light_magenta():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="White",fg="Magenta")
+    textarea.config(background="White",fg="Magenta")
 
 def dark_cyan():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Cyan")
+    textarea.config(background="Black",fg="Cyan")
 def dark_yellow():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Yellow")
+    textarea.config(background="Black",fg="Yellow")
 def dark_red():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Red")
+    textarea.config(background="Black",fg="Red")
 def dark_green():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Green")
+    textarea.config(background="Black",fg="Green")
 def dark_magenta():
-    textarea.config(font=f"{font.get()} {font_size.get()}",background="Black",fg="Magenta")
+    textarea.config(background="Black",fg="Magenta")
 
-
+def font_Courier():
+    textarea.config(font=("Courier",13))
+def font_Arial():
+    textarea.config(font=("Arial",13))
+def font_Roman():
+    textarea.config(font=("Roman",13))
+def font_Times_New_Roman():
+    textarea.config(font=("Times New Roman",13))
+def font_Impact():
+    textarea.config(font=("Impact",13))
 
 
 def about():
@@ -81,17 +91,11 @@ if __name__=="__main__":
     root.geometry("900x600")
     root.minsize(900,200)
 
-    # font and fontsize
-    font=StringVar()
-    font_size=IntVar()
-    font.set("Ariel")
-    font_size.set(13)
-
 
     # text area
     f1=Frame(root)
     f1.pack(side=LEFT,fill=BOTH,expand=True)
-    textarea=Text(f1,font=f"{font.get()} {font_size.get()}")
+    textarea=Text(f1,font=("Ariel",13))
     textarea.pack(expand=True,fill=BOTH)
 
 
@@ -131,8 +135,16 @@ if __name__=="__main__":
     Theme_menu.add_command(label="Dark Yellow",command=dark_yellow)
     Theme_menu.add_command(label="Dark Red",command=dark_red)
     Theme_menu.add_command(label="Dark Green",command=dark_green)
-
     mainmenu.add_cascade(label="Theme",menu=Theme_menu)
+    # font style
+    Font_menu=Menu(mainmenu,tearoff=0)
+    Font_menu.add_command(label="Courier",command=font_Courier)
+    Font_menu.add_command(label="Arial",command=font_Arial)
+    Font_menu.add_command(label="Roman",command=font_Roman)
+    Font_menu.add_command(label="Times_New_Roman",command=font_Times_New_Roman)
+    Font_menu.add_command(label="Impact",command=font_Impact)
+
+    mainmenu.add_cascade(label="Font",menu=Font_menu)
     
 
 
