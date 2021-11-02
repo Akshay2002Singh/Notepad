@@ -70,32 +70,49 @@ def dark_magenta():
     textarea.config(background="Black",fg="Magenta")
 
 def font_Courier():
-    textarea.config(font=("Courier",13))
+    textarea.config(font=("Courier",13,bold.get()))
+    font.set("Courier")
 def font_Arial():
-    textarea.config(font=("Arial",13))
+    textarea.config(font=("Arial",13,bold.get()))
+    font.set("Arial")
 def font_Roman():
-    textarea.config(font=("Roman",13))
+    textarea.config(font=("Roman",13,bold.get()))
+    font.set("Roman")
 def font_Times_New_Roman():
-    textarea.config(font=("Times New Roman",13))
+    textarea.config(font=("Times New Roman",13,bold.get()))
+    font.set("Times New Roman")
 def font_Impact():
-    textarea.config(font=("Impact",13))
+    textarea.config(font=("Impact",13,bold.get()))
+    font.set("Impact")
+
+def font_bold():
+    bold.set("bold")
+    textarea.config(font=f"{font.get()} 13 {bold.get()}")
+def font_normal():
+    bold.set("normal")
+    textarea.config(font=f"{font.get()} 13 {bold.get()}")
+
 
 
 def about():
-    showinfo("Notepad","Notepad created by Elite for personal use")
+    showinfo("Notepad","Notepad created by Elite Akshay")
 
 if __name__=="__main__":
     root = Tk()
     # window size
     root.title("Elite_notepad")
-    root.geometry("900x600")
-    root.minsize(900,200)
-
+    root.geometry("1000x500")
+    root.minsize(1000,200)
+    
+    font=StringVar()
+    font.set("Ariel")
+    bold=StringVar()
+    bold.set("normal")
 
     # text area
     f1=Frame(root)
     f1.pack(side=LEFT,fill=BOTH,expand=True)
-    textarea=Text(f1,font=("Ariel",13))
+    textarea=Text(f1,font=("Ariel",13,bold.get()))
     textarea.pack(expand=True,fill=BOTH)
 
 
@@ -143,14 +160,19 @@ if __name__=="__main__":
     Font_menu.add_command(label="Roman",command=font_Roman)
     Font_menu.add_command(label="Times_New_Roman",command=font_Times_New_Roman)
     Font_menu.add_command(label="Impact",command=font_Impact)
-
     mainmenu.add_cascade(label="Font",menu=Font_menu)
-    
+    # bold or normal
+    Bold_menu=Menu(mainmenu,tearoff=0)
+    Bold_menu.add_command(label="Bold",command=font_bold)
+    Bold_menu.add_command(label="Normal",command=font_normal)
+
+
+    mainmenu.add_cascade(label="Weight",menu=Bold_menu)
 
 
     # help menu 
     helpmenu=Menu(mainmenu,tearoff=0)
-    helpmenu.add_command(label="About Notebook",command=about)
+    helpmenu.add_command(label="About Notepad",command=about)
     mainmenu.add_cascade(label="Help",menu=helpmenu)
     
     root.config(menu=mainmenu)
