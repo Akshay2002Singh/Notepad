@@ -131,7 +131,7 @@ if __name__=="__main__":
     # save file 
     Filemenu.add_command(label="Save",command=saveFile)
     Filemenu.add_separator()
-    Filemenu.add_command(label="Exit",command=quit)
+    Filemenu.add_command(label="Exit",command=root.destroy)
     mainmenu.add_cascade(label="File",menu=Filemenu)
     # edit menu 
     Editmenu=Menu(mainmenu,tearoff=0)
